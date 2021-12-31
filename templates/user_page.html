@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SJS User</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+                scroll-behavior: smooth;
+            }
+
+            .header {
+                width: 100%;
+                height: 100px;
+                background-color: yellow;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .data_point {
+                width: 700px;
+                height: 50px;
+                margin: 10px auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                background-color: black;
+                border-radius: 50px;
+            }
+
+            .data_point a {
+                text-decoration: none;
+                color: yellow;
+                font-size: 20px;
+                padding: 7px;
+                border-radius: 20px;
+            }
+
+            .cards {
+                width: 100%;
+                height: 200px;
+                background: yellow;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+
+            .cards .inner {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+
+            .cards .inner p {
+                width: 33%;
+                text-align: center;
+                font-size: 20px;
+            }
+
+            .cards .inner p span {
+                display: block;
+                text-align: center;
+                color: red;
+            }
+
+            .content {
+                width: 100%;
+                height: 50px;
+                font-size: 24px;
+                text-decoration: underline;
+                background-color: black;
+                text-align: center;
+                color: yellow;
+                line-height: 50px;
+            }
+
+            .card7 {
+                width: 100%;
+                height: max-content;
+            }
+
+            .profit {
+                width: 100%;
+                height: max-content;
+                background: yellow;
+                padding: 10px;
+            }
+
+            .profit .box {
+                border: 1px solid;
+                width: 300px;
+            }
+
+            .profit .box p {
+                font-size: 17px;
+            }
+
+            .heading {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                background-color: black;
+                color: yellow;
+                text-align: center;
+            }
+
+            body {
+                counter-reset: section;
+            }
+
+            .profit p::before {
+                counter-increment: section;
+                content: counter(section) ": ";
+            }
+
+            @media screen and (max-width:768px) {
+                .header {
+                    width: 100%;
+                    height: 150px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-evenly;
+                }
+
+                .header p {
+                    text-align: center;
+                }
+
+                .data_point {
+                    width: 100%;
+                    height: 50px;
+                }
+
+                .incontent {
+                    margin-top: 7px;
+                }
+
+                .cards .inner {
+                    border-bottom: 1px solid;
+                }
+
+                .income {
+                    height: 450px;
+                }
+
+                .heading {
+                    margin-top: 70px;
+                }
+            }
+
+            .card7 .tab {
+                width: 100%;
+                height: max-content;
+                border: 1px solid;
+                border-collapse: collapse;
+            }
+
+            .card7 .tab .rows {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border: 1px solid;
+            }
+
+            .card7 .tab .rows .col {
+                width: 25%;
+                border: 1px solid;
+                text-align: center;
+            }
+
+            @media screen and (max-width:390px) {
+                .header h1 {
+                    text-align: center;
+                }
+
+                .cards {
+                    height: 380px;
+                }
+
+                .income {
+                    height: 520px;
+                }
+
+                .card7 .tab {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .card7 .tab .rows {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+
+                .card7 .tab .rows .col {
+                    width: 25%;
+                }
+
+                .heading {
+                    margin-top: 50px;
+                }
+            }
+
+            .music {
+                width: 100%;
+                height: 50px;
+                opacity: 0;
+                margin-top: -100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div>
+        </div>
+        <div class="header">
+            <h1>SJS Car Wash Center</h1>
+            <p>RamakrishnaPuram 4th street, Mini-ByPass Road,Eluru-534002</p>
+        </div>
+        <div class="data_point">
+            <a href="data_page">Enter Data</a>
+            <a href="bill_page">Generate Bil</a>
+            <a href="logout_page">Logout</a>
+        </div>
+        <div class="content">Today's Data</div>
+        <div class="cards">
+
+            <div class="card1 inner">
+                <p>No of Body washes Today<span>{{bodywash_count_today}}</span></p>
+                <p>No of Full washes Today<span>{{fullwash_count_today}}</span></p>
+                <p>No of Jcb's Today<span>{{jcb_count_today}}</span></p>
+            </div>
+            <div class="card2 inner">
+                <p>No of Crane's Today<span>{{crane_count_today}}</span></p>
+                <p>Direct Payments Today<span>{{handcash_count_today}}</span></p>
+                <p>Digital Transactions Today<span>{{digitalcash_count_today}}</span></p>
+            </div>
+            <div class="card2 inner">
+                <p>Pending Transactions Today <span>{{pending_count_today}}</span></p>
+            </div>
+
+        </div>
+        <div class="content incontent">Today's Income</div>
+        <div class="cards income">
+
+            <div class="card1 inner">
+                <p>Total income from Body wash Today<span>{{bodywash_profit_today}}</span></p>
+                <p>Total income from Full wash Today<span>{{fullwash_profit_today}}</span></p>
+                <p>Total income from Jcb's Today<span>{{jcb_profit_today}}</span></p>
+            </div>
+            <div class="card2 inner">
+                <p>Total income from Crane's Today<span>{{crane_profit_today}}</span></p>
+                <p>Total income from Direct Payments Today<span>{{handcash_profit_today}}</span></p>
+                <p>Total income from Digital Transactions Today <span>{{digitalcash_profit_today}}</span></p>
+            </div>
+            <div class="card2 inner">
+                <p>Total Profit Today <span>{{profit_today}}</span></p>
+            </div>
+        </div>
+        <div class="content">Day-wise Profits</div>
+        <div class="profit">
+            {% for item in everyday_profit_obj %}
+            <p>Total Profit of <span>{{item.dialy_date}} is {{item.dialy_profit}}</span></p>
+            {% endfor %}
+
+        </div>
+        <p class="heading">
+            <span>Date</span>
+            <span>Vehicle Number</span>
+            <span>Vehicle Wash</span>
+            <span>Amount Taken</span>
+        </p>
+        <div class="card7">
+            <table class="tab">
+                {% for item in everyday_vehicle_obj %}
+                <tr class="rows">
+                    <td class="col">{{item.vehicle_arrived_date}}</td>
+                    <td class="col">{{item.vehicle_no}}</td>
+                    <td class="col">{{item.vehicle_wash}}</td>
+                    <td class="col">{{item.vehicle_amount}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br>
+    </body>
+
+</html>

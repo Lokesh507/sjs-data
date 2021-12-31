@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Data Page</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Roboto', sans-serif;
+            }
+
+            body {
+                background-color: #4158D0;
+                background: linear-gradient(260deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+            }
+
+            .header {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .header p,
+            a {
+                width: 50%;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 20px;
+                color: #fff;
+            }
+
+            .header a {
+                text-align: right;
+                padding-right: 25px;
+                text-decoration: underline;
+                letter-spacing: 0.5px;
+                color: #fff;
+            }
+
+            .container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                height: 300px;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 15px;
+            }
+
+            .container .section1 {
+                width: 100%;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 20px;
+                text-decoration: underline;
+            }
+
+            .container .section2 {
+                width: 100%;
+                height: 250px;
+                padding: 10px;
+            }
+
+            .container .section2 .box1 {
+                width: 100%;
+                height: 50px;
+                border: 1px solid;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+            }
+
+            .container .section2 .box1 .box11 {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .container .section2 .box1 .box11 label {
+                width: 150px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 20px;
+            }
+
+            .container .section2 .box1 .box11 input {
+                border: none;
+                outline: none;
+                width: 200px;
+                height: 30px;
+                font-size: 18px;
+                border-bottom: 2px solid;
+                background: transparent;
+                border: 1px solid;
+                border-radius: 7px;
+                padding: 5px
+            }
+
+            .container .section2 .box2 {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .box2 div {
+                width: 150px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+
+            .box2 div label {
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+            .container .section2 .box3 {
+                width: 100%;
+                height: 50px;
+                border: 1px solid;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .container .section2 .box3 .box31,
+            .container .section2 .box3 .box32 {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .container .section2 .box3 .box31 label,
+            .container .section2 .box3 .box32 label {
+                width: 150px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 20px;
+            }
+
+            .container .section2 .box3 .box31 input,
+            .container .section2 .box3 .box32 select {
+                border: none;
+                outline: none;
+                width: 200px;
+                height: 30px;
+                font-size: 18px;
+                border-bottom: 2px solid;
+                background: transparent;
+                border: 1px solid;
+                border-radius: 7px;
+            }
+
+            #payment {
+                cursor: pointer;
+            }
+
+            .container .section2 .box4 {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 10px;
+            }
+
+            .container .section2 .box4 #btn {
+                width: 150px;
+                height: 30px;
+                border-radius: 7px;
+                font-size: 17px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="header">
+            <p>SJS CAR WASH</p>
+            <a href="login_page">Login</a>
+        </div>
+        <div class="container">
+            <div class="section1">
+                <p>Submit Response</p>
+            </div>
+            <div class="section2">
+                <form action="data_page" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="box1">
+                        <div class="box11">
+                            <label for="vno">Vehicle No:</label>
+                            <input type="text" name="vno" id="vno" required>
+                        </div>
+                        <div class="box11">
+                            <label for="date">Date:</label>
+                            <input type="text" name="date" id="date" readonly>
+                        </div>
+                    </div>
+
+                    <div class="box2">
+                        <div>
+                            <input type="radio" name="vehicle" id="bodywash" value="Body Wash">
+                            <label for="bodywash">Body Wash</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" name="vehicle" id="fullwash" value="Full Wash">
+                            <label for="fullwash">Full Wash</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" name="vehicle" id="jcb" value="jcb">
+                            <label for="jcb">JCB</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" name="vehicle" id="crane" value="crane">
+                            <label for="crane">Crane</label>
+                        </div>
+
+                    </div>
+                    <div class="box3">
+                        <div class="box31">
+                            <label for="amount">Amount:</label>
+                            <input type="text" name="amount" id="amount" required>
+                        </div>
+                        <div class="box32">
+                            <label for="payment">Payment mode:</label>
+                            <select name="payment" id="payment" required>
+                                <option value="Hand Cash">Hand Cash</option>
+                                <option value="Digital Cash">Digital Cash</option>
+                                <option value="Pending">Pending</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="box4">
+                        <input type="submit" value="Send Data" id="btn">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+    <script>
+        n = new Date();
+        y = n.getFullYear();
+        m = n.getMonth() + 1;
+        d = n.getDate();
+        document.getElementById("date").value += d + "-" + m + "-" + y;
+    </script>
+
+</html>
