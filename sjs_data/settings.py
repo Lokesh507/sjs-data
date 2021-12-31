@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'sjs_data.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sjs_data',
-        'PASSWORD': '2001',
-        'USER': 'postgres',
-        'HOST': 'localhost'
+        'NAME': 'dd5bvlks28dpau',
+        'PASSWORD': 'b63b5db69c2bfbbc54664019efcbd10d0e1de8b19d8de54769cef1c2810cfbe6',
+        'USER': 'ehauhcxwbdoeac',
+        'HOST': 'ec2-54-162-211-113.compute-1.amazonaws.com'
     }
 }
 
