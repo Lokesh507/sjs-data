@@ -125,6 +125,12 @@
                 content: counter(section) ": ";
             }
 
+            .one {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
             @media screen and (max-width:768px) {
                 .header {
                     width: 100%;
@@ -262,7 +268,7 @@
                 <p>Total income from Full wash Today<span>{{fullwash_profit_today}}</span></p>
                 <p>Total income from Google-Pay Today<span>{{googlepayincome_profit_today}}</span></p>
             </div>
-            <div class="card2 inner">
+            <div class="card2 inner one">
                 <p>Total income from Phone-Pe Today<span>{{phonepeincome_profit_today}}</span></p>
                 <p>Total income from Direct Payments Today<span>{{handcash_profit_today}}</span></p>
             </div>
