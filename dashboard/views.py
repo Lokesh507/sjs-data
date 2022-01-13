@@ -141,12 +141,12 @@ def login_page(request):
             for i in googlepayincome_today_outersql:
                 googlepay_profit_today += i.vehicle_amount
 
-            phonpeincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type='Phone Pe' ".format(
+            phonepeincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type='Phone Pe' ".format(
                 today)
-            phonpeincome_today_outersql = Vehicle_Data.objects.raw(
+            phonepeincome_today_outersql = Vehicle_Data.objects.raw(
                 phonpeincome_today_innersql)
-            phonpe_profit_today = 0
-            for i in phonpeincome_today_outersql:
+            phonepe_profit_today = 0
+            for i in phonepeincome_today_outersql:
                 phonepe_profit_today += i.vehicle_amount
 
             handcashincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type='Hand Cash' ".format(
