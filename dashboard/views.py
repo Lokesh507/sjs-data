@@ -34,18 +34,18 @@ def data_page(request):
         sql_len = sjs_dailyprofit_obj.__len__()
         if(sql_len == 0):
             sjs_dailyprofit_obj = sjs_dailyprofit(
-                dialy_date=today, dialy_profit=profit_today)
+                dialy_date=date, dialy_profit=profit_today)
             sjs_dailyprofit_obj.save()
         if(sql_len > 0):
-            if(sjs_dailyprofit.objects.filter(dialy_date=today).exists()):
-                obj = sjs_dailyprofit.objects.get(dialy_date=today)
+            if(sjs_dailyprofit.objects.filter(dialy_date=date).exists()):
+                obj = sjs_dailyprofit.objects.get(dialy_date=date)
                 print("Profit is:", obj.dialy_profit)
                 obj.dialy_profit = profit_today
                 print("Profit is:", obj.dialy_profit)
                 obj.save()
             else:
                 sjs_dailyprofit_obj = sjs_dailyprofit(
-                    dialy_date=today, dialy_profit=profit_today)
+                    dialy_date=date, dialy_profit=profit_today)
                 sjs_dailyprofit_obj.save()
 
         return HttpResponseRedirect('data_page')
