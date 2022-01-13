@@ -147,7 +147,7 @@ def login_page(request):
                 phonpeincome_today_innersql)
             phonpe_profit_today = 0
             for i in phonpeincome_today_outersql:
-                phonpe_profit_today += i.vehicle_amount
+                phonepe_profit_today += i.vehicle_amount
 
             handcashincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type='Hand Cash' ".format(
                 today)
