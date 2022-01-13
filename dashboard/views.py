@@ -144,7 +144,7 @@ def login_page(request):
             phonepeincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type='Phone Pe' ".format(
                 today)
             phonepeincome_today_outersql = Vehicle_Data.objects.raw(
-                phonpeincome_today_innersql)
+                phonepeincome_today_innersql)
             phonepe_profit_today = 0
             for i in phonepeincome_today_outersql:
                 phonepe_profit_today += i.vehicle_amount
