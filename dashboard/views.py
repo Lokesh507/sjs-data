@@ -24,7 +24,7 @@ def data_page(request):
         data_obj.save()
 
         profit_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' ".format(
-            today)
+            date)
         profit_today_outersql = Vehicle_Data.objects.raw(profit_today_innersql)
         profit_today = 0
         for i in profit_today_outersql:
