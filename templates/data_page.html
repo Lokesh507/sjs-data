@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -236,16 +237,6 @@
                             <label for="fullwash">Full Wash</label>
                         </div>
 
-                        <div>
-                            <input type="radio" name="vehicle" id="jcb" value="jcb">
-                            <label for="jcb">JCB</label>
-                        </div>
-
-                        <div>
-                            <input type="radio" name="vehicle" id="crane" value="crane">
-                            <label for="crane">Crane</label>
-                        </div>
-
                     </div>
                     <div class="box3">
                         <div class="box31">
@@ -256,7 +247,8 @@
                             <label for="payment">Payment mode:</label>
                             <select name="payment" id="payment" required>
                                 <option value="Hand Cash">Hand Cash</option>
-                                <option value="Digital Cash">Digital Cash</option>
+                                <option value="Google Pay">Google Pay</option>
+                                <option value="Phone Pe">PhonePe</option>
                                 <option value="Pending">Pending</option>
                             </select>
                         </div>
@@ -266,6 +258,7 @@
                     </div>
                 </form>
             </div>
+
         </div>
     </body>
     <script>

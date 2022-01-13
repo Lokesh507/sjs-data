@@ -6,8 +6,6 @@ from django.contrib.auth.models import User, auth
 
 # Create your views here.
 
-res = 0
-
 
 def index(request):
     return render(request, 'index.html')
@@ -17,19 +15,16 @@ def data_page(request):
     today = datetime.today().date()
     if(request.method == "POST"):
         vno = request.POST['vno']
-        #date = request.POST['date']
-        date = today
+        date = request.POST['date']
         vehicle_wash = request.POST["vehicle"]
         vehicle_amount = request.POST["amount"]
         payment_type = request.POST["payment"]
         data_obj = Vehicle_Data(vehicle_no=vno, vehicle_arrived_date=date, vehicle_wash=vehicle_wash,
                                 vehicle_amount=vehicle_amount, payment_type=payment_type)
         data_obj.save()
-        global res
-        res = 1
 
         profit_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' ".format(
-            date)
+            today)
         profit_today_outersql = Vehicle_Data.objects.raw(profit_today_innersql)
         profit_today = 0
         for i in profit_today_outersql:
@@ -39,18 +34,18 @@ def data_page(request):
         sql_len = sjs_dailyprofit_obj.__len__()
         if(sql_len == 0):
             sjs_dailyprofit_obj = sjs_dailyprofit(
-                dialy_date=date, dialy_profit=profit_today)
+                dialy_date=today, dialy_profit=profit_today)
             sjs_dailyprofit_obj.save()
         if(sql_len > 0):
-            if(sjs_dailyprofit.objects.filter(dialy_date=date).exists()):
-                obj = sjs_dailyprofit.objects.get(dialy_date=date)
+            if(sjs_dailyprofit.objects.filter(dialy_date=today).exists()):
+                obj = sjs_dailyprofit.objects.get(dialy_date=today)
                 print("Profit is:", obj.dialy_profit)
                 obj.dialy_profit = profit_today
                 print("Profit is:", obj.dialy_profit)
                 obj.save()
             else:
                 sjs_dailyprofit_obj = sjs_dailyprofit(
-                    dialy_date=date, dialy_profit=profit_today)
+                    dialy_date=today, dialy_profit=profit_today)
                 sjs_dailyprofit_obj.save()
 
         return HttpResponseRedirect('data_page')
@@ -89,29 +84,23 @@ def login_page(request):
                 fullwash_count_today_innersql)
             fullwash_count_today = fullwash_count_today_outersql.__len__()
 
-            jcb_count_today_innersql = "SELECT * FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and vehicle_wash = 'jcb' ".format(
+            googlepay_count_today_innersql = "SELECT * FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment = 'Google Pay' ".format(
                 today)
-            jcb_count_today_outersql = Vehicle_Data.objects.raw(
-                jcb_count_today_innersql)
-            jcb_count_today = jcb_count_today_outersql.__len__()
+            googlepay_count_today_outersql = Vehicle_Data.objects.raw(
+                googlepay_count_today_innersql)
+            googlepay_count_today = googlepay_count_today_outersql.__len__()
 
-            crane_count_today_innersql = "SELECT * FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and vehicle_wash = 'crane' ".format(
+            phonepe_count_today_innersql = "SELECT * FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment = 'Phone Pe' ".format(
                 today)
-            crane_count_today_outersql = Vehicle_Data.objects.raw(
-                crane_count_today_innersql)
-            crane_count_today = crane_count_today_outersql.__len__()
+            phonepe_count_today_outersql = Vehicle_Data.objects.raw(
+                phonepe_count_today_innersql)
+            phonepe_count_today = phonepe_count_today_outersql.__len__()
 
             handcash_count_today_innersql = "SELECT * FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type = 'Hand Cash' ".format(
                 today)
             handcash_count_today_outersql = Vehicle_Data.objects.raw(
                 handcash_count_today_innersql)
             handcash_count_today = handcash_count_today_outersql.__len__()
-
-            digitalcash_count_today_innersql = "SELECT * FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type = 'Digital Cash' ".format(
-                today)
-            digitalcash_count_today_outersql = Vehicle_Data.objects.raw(
-                digitalcash_count_today_innersql)
-            digitalcash_count_today = digitalcash_count_today_outersql.__len__()
 
             pending_count_today_innersql = "SELECT * FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type = 'Pending' ".format(
                 today)
@@ -144,21 +133,21 @@ def login_page(request):
             for i in fullwashincome_today_outersql:
                 fullwash_profit_today += i.vehicle_amount
 
-            jcbincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and vehicle_wash='jcb' ".format(
+            googlepayincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment='Google Pay' ".format(
                 today)
-            jcbincome_today_outersql = Vehicle_Data.objects.raw(
-                jcbincome_today_innersql)
-            jcb_profit_today = 0
-            for i in jcbincome_today_outersql:
-                jcb_profit_today += i.vehicle_amount
+            googlepayincome_today_outersql = Vehicle_Data.objects.raw(
+                googlepayincome_today_innersql)
+            googlepay_profit_today = 0
+            for i in googlepayincome_today_outersql:
+                googlepay_profit_today += i.vehicle_amount
 
-            craneincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and vehicle_wash='crane' ".format(
+            phonpeincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment='Phone Pe' ".format(
                 today)
-            craneincome_today_outersql = Vehicle_Data.objects.raw(
-                craneincome_today_innersql)
-            crane_profit_today = 0
-            for i in craneincome_today_outersql:
-                crane_profit_today += i.vehicle_amount
+            phonpeincome_today_outersql = Vehicle_Data.objects.raw(
+                phonpeincome_today_innersql)
+            phonpe_profit_today = 0
+            for i in phonpeincome_today_outersql:
+                phonpe_profit_today += i.vehicle_amount
 
             handcashincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type='Hand Cash' ".format(
                 today)
@@ -168,29 +157,19 @@ def login_page(request):
             for i in handcashincome_today_outersql:
                 handcash_profit_today += i.vehicle_amount
 
-            digitalcashincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type='Digital Cash' ".format(
-                today)
-            digitalcashincome_today_outersql = Vehicle_Data.objects.raw(
-                digitalcashincome_today_innersql)
-            digitalcash_profit_today = 0
-            for i in digitalcashincome_today_outersql:
-                digitalcash_profit_today += i.vehicle_amount
-
             everyday_profit_obj = sjs_dailyprofit.objects.all()
             everyday_vehicle_obj = Vehicle_Data.objects.all()
 
             return render(request, 'user_page.html', {'bodywash_count_today': bodywash_count_today,
                                                       'fullwash_count_today': fullwash_count_today,
-                                                      'jcb_count_today': jcb_count_today,
-                                                      'crane_count_today': crane_count_today,
+                                                      'googlepay_count_today': jcb_count_today,
+                                                      'phonepe_count_today': crane_count_today,
                                                       'handcash_count_today': handcash_count_today,
-                                                      'digitalcash_count_today': digitalcash_count_today,
                                                       'bodywash_profit_today': bodywash_profit_today,
                                                       'fullwash_profit_today': fullwash_profit_today,
-                                                      'jcb_profit_today': jcb_profit_today,
-                                                      'crane_profit_today': crane_profit_today,
+                                                      'googlepayincome_profit_today': jcb_profit_today,
+                                                      'phonpeincome_profit_today': crane_profit_today,
                                                       'handcash_profit_today': handcash_profit_today,
-                                                      'digitalcash_profit_today': digitalcash_profit_today,
                                                       'profit_today': profit_today,
                                                       'everyday_profit_obj': everyday_profit_obj,
                                                       'everyday_vehicle_obj': everyday_vehicle_obj,
