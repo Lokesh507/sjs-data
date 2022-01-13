@@ -84,13 +84,13 @@ def login_page(request):
                 fullwash_count_today_innersql)
             fullwash_count_today = fullwash_count_today_outersql.__len__()
 
-            googlepay_count_today_innersql = "SELECT * FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment = 'Google Pay' ".format(
+            googlepay_count_today_innersql = "SELECT * FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type = 'Google Pay' ".format(
                 today)
             googlepay_count_today_outersql = Vehicle_Data.objects.raw(
                 googlepay_count_today_innersql)
             googlepay_count_today = googlepay_count_today_outersql.__len__()
 
-            phonepe_count_today_innersql = "SELECT * FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment = 'Phone Pe' ".format(
+            phonepe_count_today_innersql = "SELECT * FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type = 'Phone Pe' ".format(
                 today)
             phonepe_count_today_outersql = Vehicle_Data.objects.raw(
                 phonepe_count_today_innersql)
@@ -133,7 +133,7 @@ def login_page(request):
             for i in fullwashincome_today_outersql:
                 fullwash_profit_today += i.vehicle_amount
 
-            googlepayincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment='Google Pay' ".format(
+            googlepayincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type='Google Pay' ".format(
                 today)
             googlepayincome_today_outersql = Vehicle_Data.objects.raw(
                 googlepayincome_today_innersql)
@@ -141,7 +141,7 @@ def login_page(request):
             for i in googlepayincome_today_outersql:
                 googlepay_profit_today += i.vehicle_amount
 
-            phonpeincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment='Phone Pe' ".format(
+            phonpeincome_today_innersql = "SELECT id,vehicle_amount  FROM dashboard_Vehicle_Data where vehicle_arrived_date = '{0}' and payment_type='Phone Pe' ".format(
                 today)
             phonpeincome_today_outersql = Vehicle_Data.objects.raw(
                 phonpeincome_today_innersql)
@@ -167,8 +167,8 @@ def login_page(request):
                                                       'handcash_count_today': handcash_count_today,
                                                       'bodywash_profit_today': bodywash_profit_today,
                                                       'fullwash_profit_today': fullwash_profit_today,
-                                                      'googlepayincome_profit_today': jcb_profit_today,
-                                                      'phonpeincome_profit_today': crane_profit_today,
+                                                      'googlepayincome_profit_today': googlepay_profit_today,
+                                                      'phonpeincome_profit_today': phonepe_profit_today,
                                                       'handcash_profit_today': handcash_profit_today,
                                                       'profit_today': profit_today,
                                                       'everyday_profit_obj': everyday_profit_obj,
