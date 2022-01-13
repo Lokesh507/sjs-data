@@ -125,11 +125,18 @@
                 content: counter(section) ": ";
             }
 
-            .one {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+            .logout {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 70px;
+                height: 50px;
+                text-decoration: none;
+                color: yellow;
+                font-size: 20px;
+                padding: 7px;
+                border-radius: 20px;
+                background-color: black;
             }
 
             @media screen and (max-width:768px) {
@@ -235,7 +242,8 @@
     </head>
 
     <body>
-        <div>
+        <div class="logout">
+            <a href="logout_page">Logout</a>
         </div>
         <div class="header">
             <h1>SJS Car Wash Center</h1>
@@ -244,7 +252,6 @@
         <div class="data_point">
             <a href="data_page">Enter Data</a>
             <a href="bill_page">Generate Bil</a>
-            <a href="logout_page">Logout</a>
         </div>
         <div class="content">Today's Data</div>
         <div class="cards">
