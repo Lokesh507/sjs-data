@@ -168,7 +168,7 @@ def login_page(request):
                                                       'bodywash_profit_today': bodywash_profit_today,
                                                       'fullwash_profit_today': fullwash_profit_today,
                                                       'googlepayincome_profit_today': googlepay_profit_today,
-                                                      'phonpeincome_profit_today': phonepe_profit_today,
+                                                      'phonepeincome_profit_today': phonepe_profit_today,
                                                       'handcash_profit_today': handcash_profit_today,
                                                       'profit_today': profit_today,
                                                       'everyday_profit_obj': everyday_profit_obj,
