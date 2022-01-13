@@ -162,8 +162,8 @@ def login_page(request):
 
             return render(request, 'user_page.html', {'bodywash_count_today': bodywash_count_today,
                                                       'fullwash_count_today': fullwash_count_today,
-                                                      'googlepay_count_today': jcb_count_today,
-                                                      'phonepe_count_today': crane_count_today,
+                                                      'googlepay_count_today': googlepay_count_today,
+                                                      'phonepe_count_today': phonepe_count_today,
                                                       'handcash_count_today': handcash_count_today,
                                                       'bodywash_profit_today': bodywash_profit_today,
                                                       'fullwash_profit_today': fullwash_profit_today,
